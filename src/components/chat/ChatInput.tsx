@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { useChatStore } from "@/store/chatStore";
-import { ArrowUp, Square } from "lucide-react";
+import { ArrowUp, Square, Paperclip } from "lucide-react";
 
 interface ChatInputProps {
   text: string;
@@ -23,10 +23,9 @@ export default function ChatInput({
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
-    // Auto resize
     const textarea = e.target;
     textarea.style.height = "auto";
-    textarea.style.height = `${Math.min(220, textarea.scrollHeight)}px`;
+    textarea.style.height = `${Math.min(200, textarea.scrollHeight)}px`;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -37,8 +36,16 @@ export default function ChatInput({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto relative">
-      <div className="relative flex items-end w-full border border-border-custom bg-bg-app rounded-[20px] shadow-sm hover:shadow-md focus-within:border-accent-custom focus-within:shadow-md transition-all duration-200 py-3 pl-4 pr-14">
+    <div className="w-full max-w-2xl mx-auto relative px-4">
+      <div className="relative flex items-end w-full bg-bg-card rounded-[26px] hover:shadow-xs transition-all duration-200 py-3 pl-12 pr-12">
+        {/* Attachment Icon (ChatGPT style paperclip) */}
+        <button
+          className="absolute left-3 bottom-3 p-1.5 hover:bg-bg-app/50 text-txt-secondary hover:text-txt-primary rounded-full transition-colors duration-150 cursor-pointer"
+          title="Attach files (mock)"
+        >
+          <Paperclip size={16} />
+        </button>
+
         {/* Input Textarea */}
         <textarea
           ref={inputRef}
@@ -46,8 +53,8 @@ export default function ChatInput({
           value={text}
           onChange={handleTextChange}
           onKeyDown={handleKeyDown}
-          placeholder="Ask anything..."
-          className="flex-1 resize-none bg-transparent border-0 outline-none text-txt-primary placeholder:text-txt-secondary text-sm leading-relaxed max-h-[220px]"
+          placeholder="Message Aethera..."
+          className="flex-1 resize-none bg-transparent border-0 outline-none text-txt-primary placeholder:text-txt-secondary text-sm leading-relaxed max-h-[200px]"
           style={{ height: "auto" }}
         />
 
@@ -56,23 +63,23 @@ export default function ChatInput({
           {isGenerating ? (
             <button
               onClick={onStopGeneration}
-              className="p-2 bg-txt-primary text-bg-app hover:opacity-90 rounded-full transition-opacity duration-150 flex items-center justify-center"
+              className="p-2 bg-txt-primary text-bg-app hover:opacity-90 rounded-full transition-opacity duration-150 flex items-center justify-center cursor-pointer shadow-xs"
               title="Stop generating"
             >
-              <Square size={13} className="fill-bg-app text-bg-app" />
+              <Square size={12} className="fill-bg-app text-bg-app" />
             </button>
           ) : (
             <button
               onClick={onSendMessage}
               disabled={!text.trim()}
-              className={`p-2 rounded-full transition duration-200 flex items-center justify-center ${
+              className={`p-2 rounded-full transition duration-150 flex items-center justify-center shadow-xs ${
                 text.trim()
                   ? "bg-txt-primary text-bg-app hover:opacity-90 cursor-pointer"
-                  : "bg-border-custom text-txt-secondary cursor-not-allowed"
+                  : "bg-border-custom text-txt-secondary/40 cursor-not-allowed"
               }`}
               title="Send message"
             >
-              <ArrowUp size={14} strokeWidth={2.5} />
+              <ArrowUp size={13} strokeWidth={3} />
             </button>
           )}
         </div>

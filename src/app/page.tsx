@@ -8,8 +8,35 @@ import MessageItem from "@/components/chat/MessageItem";
 import SettingsDialog from "@/components/settings/SettingsDialog";
 import { useChatStore } from "@/store/chatStore";
 import { Message } from "@/types/chat";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Map, Mail, Code, Lightbulb } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
+
+const LANDING_SUGGESTIONS = [
+  {
+    title: "Plan a trip",
+    subtitle: "Help me plan a 5-day trip to Tokyo",
+    prompt: "Can you help me plan a 5-day itinerary for a trip to Tokyo? I like historic temples, local street food, and modern gadgets.",
+    icon: Map,
+  },
+  {
+    title: "Help me write",
+    subtitle: "Write a polite email asking for feedback",
+    prompt: "Write a short, polite email to a client requesting feedback on the project prototype we delivered yesterday.",
+    icon: Mail,
+  },
+  {
+    title: "Explain code",
+    subtitle: "How does recursion work in JavaScript?",
+    prompt: "Explain how recursion works in JavaScript using a simple, real-world analogy and a short code example.",
+    icon: Code,
+  },
+  {
+    title: "Brainstorm ideas",
+    subtitle: "Suggest creative names for an AI startup",
+    prompt: "Brainstorm 10 creative, modern, and memorable names for a new startup focused on AI productivity tools.",
+    icon: Lightbulb,
+  },
+];
 
 export default function Page() {
   const {
@@ -78,6 +105,11 @@ export default function Page() {
       abortControllerRef.current.abort();
     }
     setIsGenerating(false);
+  };
+
+  const handleSuggestionClick = (promptText: string) => {
+    setText(promptText);
+    inputRef.current?.focus();
   };
 
   const handleSend = async (overrideText?: string) => {
@@ -195,13 +227,35 @@ export default function Page() {
           <div className="flex-1 flex flex-col min-h-0 overflow-y-auto px-4 md:px-8 py-6 scrollbar-thin">
             {isLanding ? (
               /* Centered Landing View */
-              <div className="flex-1 flex flex-col items-center justify-center max-w-2xl mx-auto w-full text-center">
+              <div className="flex-1 flex flex-col items-center justify-center max-w-xl mx-auto w-full text-center">
                 <div className="w-10 h-10 rounded-full bg-accent-custom flex items-center justify-center text-white mb-5 animate-fade-in shadow-sm select-none">
                   <Sparkles size={18} />
                 </div>
-                <h1 className="text-3xl font-extrabold tracking-tight text-txt-primary mb-12 select-none animate-fade-in">
+                <h1 className="text-2xl font-extrabold tracking-tight text-txt-primary mb-8 select-none animate-fade-in">
                   How can I help you today?
                 </h1>
+
+                {/* Suggestions Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full animate-fade-in mt-4">
+                  {LANDING_SUGGESTIONS.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <div
+                        key={index}
+                        onClick={() => handleSuggestionClick(item.prompt)}
+                        className="p-3.5 text-left border border-border-custom/40 bg-bg-card/30 hover:bg-bg-card rounded-2xl cursor-pointer transition duration-150 flex items-start space-x-3 group"
+                      >
+                        <div className="p-2 bg-bg-card border border-border-custom/50 rounded-xl text-txt-secondary group-hover:text-accent-custom transition duration-150 shrink-0">
+                          <Icon size={14} />
+                        </div>
+                        <div className="truncate">
+                          <h4 className="text-xs font-bold text-txt-primary">{item.title}</h4>
+                          <p className="text-[10.5px] text-txt-secondary mt-0.5 truncate">{item.subtitle}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             ) : (
               /* Messages List */
@@ -222,7 +276,7 @@ export default function Page() {
           <div
             className={`p-4 md:p-6 shrink-0 transition-all duration-500 ease-in-out ${
               isLanding
-                ? "mb-[28vh] md:mb-[30vh] w-full"
+                ? "mb-[14vh] md:mb-[16vh] w-full"
                 : "w-full border-t border-border-custom/30 bg-bg-app"
             }`}
           >
