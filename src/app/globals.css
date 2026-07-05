@@ -2,25 +2,25 @@
 @import "katex/dist/katex.min.css";
 
 :root {
-  --background-app: #ffffff;
-  --background-sidebar: #f9f9f9;
-  --background-card: #f4f4f5;
-  --text-primary: #0d0d0d;
-  --text-secondary: #676767;
-  --border-color: #e3e3e3;
-  --accent-color: #10a37f; /* ChatGPT Teal Green Accent */
-  --accent-light: #f4fbf9;
+  --background-app: #fcfcfd;
+  --background-sidebar: #f4f5f7;
+  --background-card: #ffffff;
+  --text-primary: #1a1a1e;
+  --text-secondary: #5e6675;
+  --border-color: #e4e7ec;
+  --accent-color: #6366f1; /* Premium Violet/Indigo Accent */
+  --accent-light: #eef2ff;
 }
 
 :root.dark {
-  --background-app: #212121;
-  --background-sidebar: #171717;
-  --background-card: #2f2f2f;
-  --text-primary: #ececec;
-  --text-secondary: #b4b4b4;
-  --border-color: #303030;
-  --accent-color: #10a37f;
-  --accent-light: #2d3748;
+  --background-app: #080b11;
+  --background-sidebar: #0f131a;
+  --background-card: #151b26;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --border-color: #1f2937;
+  --accent-color: #818cf8;
+  --accent-light: #1e1b4b;
 }
 
 @theme {
@@ -32,6 +32,13 @@
   --color-border-custom: var(--border-color);
   --color-accent-custom: var(--accent-color);
   --color-accent-light: var(--accent-light);
+  
+  --color-accent-indigo: #6366f1;
+  --color-accent-purple: #a855f7;
+  --color-accent-blue: #3b82f6;
+  --color-accent-pink: #ec4899;
+  --color-accent-amber: #f59e0b;
+  --color-txt-muted: var(--text-secondary);
   
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;

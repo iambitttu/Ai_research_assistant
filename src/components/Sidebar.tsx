@@ -71,15 +71,15 @@ export default function Sidebar({
       <div className="p-3.5 flex items-center justify-between h-14">
         <button
           onClick={() => createNewConversation()}
-          className="flex-1 flex items-center space-x-2 py-2 px-3 hover:bg-bg-card border border-border-custom/50 rounded-lg text-xs font-semibold text-txt-primary transition-colors duration-150"
+          className="flex-1 flex items-center space-x-2 py-2 px-3 bg-gradient-to-tr from-accent-indigo/10 to-accent-purple/10 border border-accent-indigo/25 hover:from-accent-indigo/15 hover:to-accent-purple/15 text-accent-indigo dark:text-indigo-400 rounded-xl text-xs font-bold transition-all duration-200 shadow-xs cursor-pointer"
         >
-          <Plus size={14} className="text-txt-primary" />
+          <Plus size={14} className="text-accent-indigo dark:text-indigo-400" />
           <span>New Chat</span>
         </button>
         
         <button
           onClick={() => setIsCollapsed(true)}
-          className="ml-2 p-2 hover:bg-bg-card text-txt-secondary hover:text-txt-primary rounded-lg transition-colors duration-150"
+          className="ml-2 p-2 hover:bg-bg-card text-txt-secondary hover:text-txt-primary rounded-xl transition-colors duration-150 cursor-pointer"
           title="Close sidebar"
         >
           <PanelLeftClose size={15} />
@@ -104,14 +104,14 @@ export default function Sidebar({
             return (
               <div
                 key={chat.id}
-                className={`group relative flex items-center rounded-lg cursor-pointer text-xs transition-colors duration-150 px-2.5 py-2 ${
+                className={`group relative flex items-center rounded-xl cursor-pointer text-xs transition-all duration-200 px-3 py-2.5 ${
                   isSelected
-                    ? "bg-bg-card text-txt-primary font-medium"
-                    : "text-txt-secondary hover:bg-bg-card hover:text-txt-primary"
+                    ? "bg-accent-indigo/10 text-accent-indigo dark:bg-accent-indigo/15 dark:text-indigo-400 font-bold shadow-xs"
+                    : "text-txt-secondary hover:bg-bg-card/50 hover:text-txt-primary"
                 }`}
                 onClick={() => !isEditing && setActiveId(chat.id)}
               >
-                <MessageSquare size={13} className="mr-2.5 shrink-0 text-txt-secondary" />
+                <MessageSquare size={13} className={`mr-2.5 shrink-0 ${isSelected ? "text-accent-indigo dark:text-indigo-400" : "text-txt-secondary"}`} />
 
                 {isEditing ? (
                   <input
@@ -162,8 +162,8 @@ export default function Sidebar({
       <div className="border-t border-border-custom bg-bg-sidebar p-3.5 space-y-3 shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
-            <div className="w-7 h-7 rounded-full bg-accent-custom flex items-center justify-center text-white shrink-0 shadow-xs">
-              <User size={13} />
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-accent-indigo to-accent-purple text-white flex items-center justify-center shrink-0 shadow-md">
+              <User size={14} />
             </div>
             <div className="truncate w-[120px]">
               <p className="text-xs font-bold text-txt-primary truncate">Bittu Kumar</p>
@@ -173,7 +173,7 @@ export default function Sidebar({
 
           <button
             onClick={onOpenSettings}
-            className="p-2 hover:bg-bg-card text-txt-secondary hover:text-txt-primary rounded-lg transition-colors duration-150"
+            className="p-2 hover:bg-bg-card text-txt-secondary hover:text-accent-indigo hover:scale-105 rounded-xl transition-all duration-200 cursor-pointer"
             title="Settings"
           >
             <Sliders size={14} />

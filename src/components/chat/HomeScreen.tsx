@@ -78,13 +78,13 @@ export default function HomeScreen({ onSelectPrompt }: HomeScreenProps) {
     >
       {/* Premium Logo Header */}
       <motion.div variants={itemVariants} className="text-center mb-10">
-        <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-tr from-accent-indigo to-accent-purple shadow-xl mb-4">
+        <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-tr from-accent-indigo via-accent-purple to-accent-blue shadow-lg shadow-accent-indigo/20 mb-5">
           <Sparkles className="text-white w-8 h-8 animate-pulse" />
         </div>
-        <h1 className="text-4xl font-extrabold tracking-tight text-txt-primary">
+        <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-accent-indigo via-accent-purple to-accent-blue bg-clip-text text-transparent pb-1">
           Aethera Research Engine
         </h1>
-        <p className="text-sm text-txt-secondary mt-2 max-w-md mx-auto">
+        <p className="text-sm text-txt-secondary mt-3.5 max-w-md mx-auto leading-relaxed">
           State-of-the-art search synthesis, rich coding environments, and mathematical modeling.
         </p>
       </motion.div>
@@ -100,9 +100,9 @@ export default function HomeScreen({ onSelectPrompt }: HomeScreenProps) {
             <motion.div
               key={idx}
               variants={itemVariants}
-              whileHover={{ y: -3, transition: { duration: 0.2 } }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               onClick={() => onSelectPrompt(s.prompt)}
-              className="p-5 bg-bg-card border border-border-custom rounded-2xl cursor-pointer hover:border-accent-indigo/40 hover:shadow-lg transition duration-200 flex flex-col justify-between h-[130px] group relative overflow-hidden"
+              className="p-5 bg-bg-card/45 border border-border-custom/75 rounded-2xl cursor-pointer hover:border-accent-indigo/40 hover:bg-bg-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[130px] group relative overflow-hidden backdrop-blur-xs"
             >
               <div className="flex items-start justify-between">
                 <div className={`p-2.5 rounded-xl ${s.color}`}>
@@ -110,14 +110,14 @@ export default function HomeScreen({ onSelectPrompt }: HomeScreenProps) {
                 </div>
                 <ChevronRight
                   size={16}
-                  className="text-txt-muted group-hover:text-accent-indigo group-hover:translate-x-1 transition duration-200"
+                  className="text-txt-secondary group-hover:text-accent-indigo group-hover:translate-x-1 transition duration-200"
                 />
               </div>
               <div>
                 <h3 className="text-xs font-bold text-txt-primary group-hover:text-accent-indigo transition">
                   {s.title}
                 </h3>
-                <p className="text-[10px] text-txt-secondary mt-1 line-clamp-2">
+                <p className="text-[10.5px] text-txt-secondary mt-1 line-clamp-2 leading-normal">
                   {s.desc}
                 </p>
               </div>

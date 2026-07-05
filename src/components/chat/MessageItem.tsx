@@ -36,22 +36,22 @@ export default function MessageItem({
       <div className={`flex items-start space-x-4 max-w-[85%] sm:max-w-[80%] ${isUser ? "flex-row-reverse space-x-reverse" : "flex-row"}`}>
         {/* Avatar for AI response */}
         {!isUser && (
-          <div className="w-7 h-7 rounded-full border border-border-custom flex items-center justify-center bg-bg-card text-accent-custom shrink-0 shadow-xs">
-            <Sparkles size={13} className="animate-pulse" />
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-accent-indigo to-accent-purple text-white flex items-center justify-center shrink-0 shadow-md">
+            <Sparkles size={14} className="animate-pulse" />
           </div>
         )}
 
         {/* Message Box */}
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1 min-w-0">
           <div
             className={`transition-all duration-200 select-text ${
               isUser
-                ? "px-4.5 py-3 rounded-[22px] text-sm leading-relaxed bg-[#f4f4f5] dark:bg-[#2f2f2f] text-txt-primary shadow-xs"
-                : "text-txt-primary text-sm leading-relaxed"
+                ? "px-5 py-3 rounded-[22px] rounded-tr-sm text-[13.5px] leading-relaxed bg-gradient-to-br from-accent-indigo to-accent-purple text-white shadow-md border-0"
+                : "text-txt-primary text-[13.5px] leading-relaxed"
             }`}
           >
             {isUser ? (
-              <p className="whitespace-pre-wrap font-medium">{message.content}</p>
+              <p className="whitespace-pre-wrap font-normal">{message.content}</p>
             ) : (
               <div className="prose dark:prose-invert text-txt-primary max-w-none text-[13.5px] leading-relaxed">
                 <ReactMarkdown

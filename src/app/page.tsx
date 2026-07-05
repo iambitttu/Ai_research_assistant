@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import ChatInput from "@/components/chat/ChatInput";
 import MessageItem from "@/components/chat/MessageItem";
+import HomeScreen from "@/components/chat/HomeScreen";
 import SettingsDialog from "@/components/settings/SettingsDialog";
 import { useChatStore } from "@/store/chatStore";
 import { Message } from "@/types/chat";
@@ -226,44 +227,15 @@ export default function Page() {
           {/* Scroll Container */}
           <div className="flex-1 flex flex-col min-h-0 overflow-y-auto px-4 md:px-8 py-6 scrollbar-thin">
             {isLanding ? (
-              /* Centered Landing View */
-              <div className="flex-1 flex flex-col items-center justify-center max-w-xl mx-auto w-full text-center">
-                <div className="w-10 h-10 rounded-full bg-accent-custom flex items-center justify-center text-white mb-5 animate-fade-in shadow-sm select-none">
-                  <Sparkles size={18} />
-                </div>
-                <h1 className="text-2xl font-extrabold tracking-tight text-txt-primary mb-8 select-none animate-fade-in">
-                  How can I help you today?
-                </h1>
-
-                {/* Suggestions Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full animate-fade-in mt-4">
-                  {LANDING_SUGGESTIONS.map((item, index) => {
-                    const Icon = item.icon;
-                    return (
-                      <div
-                        key={index}
-                        onClick={() => handleSuggestionClick(item.prompt)}
-                        className="p-3.5 text-left border border-border-custom/40 bg-bg-card/30 hover:bg-bg-card rounded-2xl cursor-pointer transition duration-150 flex items-start space-x-3 group"
-                      >
-                        <div className="p-2 bg-bg-card border border-border-custom/50 rounded-xl text-txt-secondary group-hover:text-accent-custom transition duration-150 shrink-0">
-                          <Icon size={14} />
-                        </div>
-                        <div className="truncate">
-                          <h4 className="text-xs font-bold text-txt-primary">{item.title}</h4>
-                          <p className="text-[10.5px] text-txt-secondary mt-0.5 truncate">{item.subtitle}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+              <HomeScreen onSelectPrompt={handleSuggestionClick} />
             ) : (
               /* Messages List */
               <div className="max-w-2xl mx-auto w-full space-y-6 flex-1">
-                {messages.map((message) => (
+                {messages.map((message, index) => (
                   <MessageItem
                     key={message.id}
                     message={message}
+                    isStreaming={isGenerating && index === messages.length - 1}
                     onRegenerate={() => handleSend(message.content)}
                   />
                 ))}
