@@ -9,35 +9,7 @@ import HomeScreen from "@/components/chat/HomeScreen";
 import SettingsDialog from "@/components/settings/SettingsDialog";
 import { useChatStore } from "@/store/chatStore";
 import { Message } from "@/types/chat";
-import { Sparkles, Map, Mail, Code, Lightbulb } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
-
-const LANDING_SUGGESTIONS = [
-  {
-    title: "Plan a trip",
-    subtitle: "Help me plan a 5-day trip to Tokyo",
-    prompt: "Can you help me plan a 5-day itinerary for a trip to Tokyo? I like historic temples, local street food, and modern gadgets.",
-    icon: Map,
-  },
-  {
-    title: "Help me write",
-    subtitle: "Write a polite email asking for feedback",
-    prompt: "Write a short, polite email to a client requesting feedback on the project prototype we delivered yesterday.",
-    icon: Mail,
-  },
-  {
-    title: "Explain code",
-    subtitle: "How does recursion work in JavaScript?",
-    prompt: "Explain how recursion works in JavaScript using a simple, real-world analogy and a short code example.",
-    icon: Code,
-  },
-  {
-    title: "Brainstorm ideas",
-    subtitle: "Suggest creative names for an AI startup",
-    prompt: "Brainstorm 10 creative, modern, and memorable names for a new startup focused on AI productivity tools.",
-    icon: Lightbulb,
-  },
-];
 
 export default function Page() {
   const {

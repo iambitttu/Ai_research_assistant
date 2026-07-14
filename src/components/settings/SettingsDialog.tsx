@@ -77,9 +77,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
             
             <button
               onClick={() => setActiveTab("general")}
-              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition ${
+              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                 activeTab === "general"
-                  ? "bg-accent-indigo-light text-accent-indigo"
+                  ? "bg-accent-light text-accent-custom"
                   : "text-txt-secondary hover:bg-bg-card hover:text-txt-primary"
               }`}
             >
@@ -89,9 +89,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
 
             <button
               onClick={() => setActiveTab("model")}
-              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition ${
+              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                 activeTab === "model"
-                  ? "bg-accent-indigo-light text-accent-indigo"
+                  ? "bg-accent-light text-accent-custom"
                   : "text-txt-secondary hover:bg-bg-card hover:text-txt-primary"
               }`}
             >
@@ -101,9 +101,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
 
             <button
               onClick={() => setActiveTab("shortcuts")}
-              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition ${
+              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                 activeTab === "shortcuts"
-                  ? "bg-accent-indigo-light text-accent-indigo"
+                  ? "bg-accent-light text-accent-custom"
                   : "text-txt-secondary hover:bg-bg-card hover:text-txt-primary"
               }`}
             >
@@ -113,9 +113,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
 
             <button
               onClick={() => setActiveTab("privacy")}
-              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition ${
+              className={`w-full flex items-center space-x-2 py-2 px-3.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                 activeTab === "privacy"
-                  ? "bg-accent-indigo-light text-accent-indigo"
+                  ? "bg-accent-light text-accent-custom"
                   : "text-txt-secondary hover:bg-bg-card hover:text-txt-primary"
               }`}
             >
@@ -126,7 +126,7 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
 
           <button
             onClick={onClose}
-            className="hidden md:flex items-center justify-center space-x-1.5 py-1.5 px-3 bg-bg-card border border-border-custom hover:border-accent-indigo/30 rounded-xl text-[10px] text-txt-secondary hover:text-txt-primary transition"
+            className="hidden md:flex items-center justify-center space-x-1.5 py-1.5 px-3 bg-bg-card border border-border-custom hover:border-accent-custom/30 rounded-xl text-[10px] text-txt-secondary hover:text-txt-primary transition cursor-pointer"
           >
             <span>Close Settings</span>
           </button>
@@ -136,7 +136,7 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
         <div className="flex-1 p-6 overflow-y-auto flex flex-col justify-between select-text scrollbar-thin">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-1.5 hover:bg-bg-app border border-transparent hover:border-border-custom text-txt-secondary hover:text-txt-primary rounded-xl transition duration-200"
+            className="absolute top-4 right-4 p-1.5 hover:bg-bg-app border border-transparent hover:border-border-custom text-txt-secondary hover:text-txt-primary rounded-xl transition duration-200 cursor-pointer"
           >
             <X size={15} />
           </button>
@@ -159,9 +159,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                     <div className="flex space-x-1 bg-bg-app p-1 rounded-xl border border-border-custom">
                       <button
                         onClick={() => setSettings({ theme: "light" })}
-                        className={`p-1.5 rounded-lg transition duration-150 ${
+                        className={`p-1.5 rounded-lg transition duration-150 cursor-pointer ${
                           settings.theme === "light"
-                            ? "bg-bg-card text-accent-indigo shadow-xs"
+                            ? "bg-bg-card text-accent-custom shadow-xs"
                             : "text-txt-muted hover:text-txt-secondary"
                         }`}
                       >
@@ -169,9 +169,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                       </button>
                       <button
                         onClick={() => setSettings({ theme: "dark" })}
-                        className={`p-1.5 rounded-lg transition duration-150 ${
+                        className={`p-1.5 rounded-lg transition duration-150 cursor-pointer ${
                           settings.theme === "dark"
-                            ? "bg-bg-card text-accent-indigo shadow-xs"
+                            ? "bg-bg-card text-accent-custom shadow-xs"
                             : "text-txt-muted hover:text-txt-secondary"
                         }`}
                       >
@@ -189,7 +189,7 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                     <select
                       value={settings.fontSize}
                       onChange={(e) => setSettings({ fontSize: e.target.value as any })}
-                      className="bg-bg-app border border-border-custom rounded-xl px-2.5 py-1 text-xs text-txt-secondary focus:border-accent-indigo outline-none"
+                      className="bg-bg-app border border-border-custom rounded-xl px-2.5 py-1 text-xs text-txt-secondary focus:border-accent-custom outline-none"
                     >
                       <option value="sm">Small</option>
                       <option value="md">Normal</option>
@@ -208,7 +208,7 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                       type="checkbox"
                       checked={settings.animationsEnabled}
                       onChange={(e) => setSettings({ animationsEnabled: e.target.checked })}
-                      className="w-4 h-4 text-accent-indigo rounded-md bg-bg-app border-border-custom focus:ring-accent-indigo"
+                      className="w-4 h-4 text-accent-custom rounded-md bg-bg-app border-border-custom focus:ring-accent-custom"
                     />
                   </div>
                 </div>
@@ -232,7 +232,7 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                     <select
                       value={settings.model}
                       onChange={(e) => setSettings({ model: e.target.value })}
-                      className="bg-bg-app border border-border-custom rounded-xl px-2.5 py-1 text-xs text-txt-secondary focus:border-accent-indigo outline-none"
+                      className="bg-bg-app border border-border-custom rounded-xl px-2.5 py-1 text-xs text-txt-secondary focus:border-accent-custom outline-none"
                     >
                       <option value="gemini-3.5-flash">Gemini 3.5 Flash (Recommended)</option>
                       <option value="gemini-2.5-pro">Gemini 2.5 Pro (Deep reasoning)</option>
@@ -243,9 +243,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                   </div>
 
                   {/* System Instructions info */}
-                  <div className="p-3 bg-accent-indigo-light rounded-xl text-[9px] leading-relaxed text-txt-secondary border border-accent-indigo/10">
-                    <p className="font-bold text-accent-indigo mb-0.5">Grounding Prompt Architecture</p>
-                    All API routes automatically format prompts to prioritize inline citations, tables, and mermaid schemas to ground response facts.
+                  <div className="p-3 bg-accent-light rounded-xl text-[9px] leading-relaxed text-txt-secondary border border-accent-custom/10">
+                    <p className="font-bold text-accent-custom mb-0.5">Grounding Prompt Architecture</p>
+                    All API routes automatically format prompts to prioritize inline citations, tables, and custom layouts to ground response facts.
                   </div>
                 </div>
               </div>
@@ -294,7 +294,7 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                     </div>
                     <button
                       onClick={handleExportData}
-                      className="flex items-center space-x-1.5 py-1.5 px-3 bg-bg-app border border-border-custom hover:border-accent-indigo/35 text-xs text-txt-secondary hover:text-txt-primary rounded-xl transition font-medium"
+                      className="flex items-center space-x-1.5 py-1.5 px-3 bg-bg-app border border-border-custom hover:border-accent-custom/35 text-xs text-txt-secondary hover:text-txt-primary rounded-xl transition font-medium cursor-pointer"
                     >
                       <Download size={13} />
                       <span>Export Data</span>
@@ -308,7 +308,7 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
                     </div>
                     <button
                       onClick={handleClearData}
-                      className="flex items-center space-x-1.5 py-1.5 px-3 bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white rounded-xl transition text-xs font-medium"
+                      className="flex items-center space-x-1.5 py-1.5 px-3 bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white rounded-xl transition text-xs font-medium cursor-pointer"
                     >
                       <Trash2 size={13} />
                       <span>Delete Workspace</span>

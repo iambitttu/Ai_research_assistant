@@ -71,9 +71,9 @@ export default function Sidebar({
       <div className="p-3.5 flex items-center justify-between h-14">
         <button
           onClick={() => createNewConversation()}
-          className="flex-1 flex items-center space-x-2 py-2 px-3 bg-gradient-to-tr from-accent-indigo/10 to-accent-purple/10 border border-accent-indigo/25 hover:from-accent-indigo/15 hover:to-accent-purple/15 text-accent-indigo dark:text-indigo-400 rounded-xl text-xs font-bold transition-all duration-200 shadow-xs cursor-pointer"
+          className="flex-1 flex items-center space-x-2 py-2 px-3 border border-border-custom hover:bg-bg-card text-txt-primary rounded-xl text-xs font-bold transition-all duration-200 shadow-2xs cursor-pointer"
         >
-          <Plus size={14} className="text-accent-indigo dark:text-indigo-400" />
+          <Plus size={14} className="text-txt-primary" />
           <span>New Chat</span>
         </button>
         
@@ -106,12 +106,12 @@ export default function Sidebar({
                 key={chat.id}
                 className={`group relative flex items-center rounded-xl cursor-pointer text-xs transition-all duration-200 px-3 py-2.5 ${
                   isSelected
-                    ? "bg-accent-indigo/10 text-accent-indigo dark:bg-accent-indigo/15 dark:text-indigo-400 font-bold shadow-xs"
+                    ? "bg-bg-card text-txt-primary font-bold shadow-2xs border-l-3 border-accent-custom rounded-l-none pl-2"
                     : "text-txt-secondary hover:bg-bg-card/50 hover:text-txt-primary"
                 }`}
                 onClick={() => !isEditing && setActiveId(chat.id)}
               >
-                <MessageSquare size={13} className={`mr-2.5 shrink-0 ${isSelected ? "text-accent-indigo dark:text-indigo-400" : "text-txt-secondary"}`} />
+                <MessageSquare size={13} className={`mr-2.5 shrink-0 ${isSelected ? "text-accent-custom" : "text-txt-secondary"}`} />
 
                 {isEditing ? (
                   <input
@@ -162,7 +162,7 @@ export default function Sidebar({
       <div className="border-t border-border-custom bg-bg-sidebar p-3.5 space-y-3 shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-accent-indigo to-accent-purple text-white flex items-center justify-center shrink-0 shadow-md">
+            <div className="w-8 h-8 rounded-xl bg-accent-custom text-white flex items-center justify-center shrink-0 shadow-sm">
               <User size={14} />
             </div>
             <div className="truncate w-[120px]">
@@ -173,7 +173,7 @@ export default function Sidebar({
 
           <button
             onClick={onOpenSettings}
-            className="p-2 hover:bg-bg-card text-txt-secondary hover:text-accent-indigo hover:scale-105 rounded-xl transition-all duration-200 cursor-pointer"
+            className="p-2 hover:bg-bg-card text-txt-secondary hover:text-accent-custom hover:scale-105 rounded-xl transition-all duration-200 cursor-pointer"
             title="Settings"
           >
             <Sliders size={14} />

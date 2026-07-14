@@ -3,13 +3,12 @@
 import React from "react";
 import { useChatStore } from "@/store/chatStore";
 import {
-  Compass,
-  Code,
   Sparkles,
-  BookOpen,
-  Scale,
-  Brain,
-  ChevronRight,
+  Map,
+  Mail,
+  Code,
+  Lightbulb,
+  ArrowUpRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -19,45 +18,39 @@ interface HomeScreenProps {
 
 const SUGGESTIONS = [
   {
-    icon: Scale,
-    title: "Compare Claude vs Gemini",
-    desc: "Detailed side-by-side model comparison of speed, token limits and code execution.",
-    prompt: "Compare Claude vs Gemini",
-    color: "text-accent-blue bg-accent-blue/10",
+    icon: Map,
+    title: "Plan a trip",
+    desc: "Help me plan a 5-day itinerary for a trip to Tokyo.",
+    prompt: "Can you help me plan a 5-day itinerary for a trip to Tokyo? I like historic temples, local street food, and modern gadgets.",
   },
   {
-    icon: Sparkles,
-    title: "Latest AI News",
-    desc: "Scrape the web for the latest artificial intelligence breakthroughs and releases.",
-    prompt: "Latest AI News",
-    color: "text-accent-purple bg-accent-purple/10",
-  },
-  {
-    icon: BookOpen,
-    title: "Explain Quantum Computing",
-    desc: "Understand superposition, qubits, Shor's algorithm, and quantum physics equations.",
-    prompt: "Explain Quantum Computing",
-    color: "text-accent-indigo bg-accent-indigo/10",
+    icon: Mail,
+    title: "Help me write",
+    desc: "Write a polite email asking for prototype feedback.",
+    prompt: "Write a short, polite email to a client requesting feedback on the project prototype we delivered yesterday.",
   },
   {
     icon: Code,
-    title: "Build React Dashboard",
-    desc: "Generate clean TypeScript dashboard components styled using Tailwind CSS classes.",
-    prompt: "Build React Dashboard",
-    color: "text-emerald-500 bg-emerald-500/10",
+    title: "Explain code",
+    desc: "Understand recursion in JavaScript with simple analogies.",
+    prompt: "Explain how recursion works in JavaScript using a simple, real-world analogy and a short code example.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Brainstorm ideas",
+    desc: "Suggest 10 creative names for a new AI tools startup.",
+    prompt: "Brainstorm 10 creative, modern, and memorable names for a new startup focused on AI productivity tools.",
   },
 ];
 
 export default function HomeScreen({ onSelectPrompt }: HomeScreenProps) {
-  const { searchMode } = useChatStore();
-
   const containerVariants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 12 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
         duration: 0.4,
         ease: "easeOut" as const,
       },
@@ -65,7 +58,7 @@ export default function HomeScreen({ onSelectPrompt }: HomeScreenProps) {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
+    hidden: { opacity: 0, y: 8 },
     visible: { opacity: 1, y: 0 },
   };
 
@@ -74,51 +67,52 @@ export default function HomeScreen({ onSelectPrompt }: HomeScreenProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="max-w-3xl w-full mx-auto flex flex-col items-center justify-center py-12 px-4 flex-1"
+      className="max-w-xl w-full mx-auto flex flex-col items-center justify-center py-10 px-4 flex-1 text-center"
     >
-      {/* Premium Logo Header */}
-      <motion.div variants={itemVariants} className="text-center mb-10">
-        <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-tr from-accent-indigo via-accent-purple to-accent-blue shadow-lg shadow-accent-indigo/20 mb-5">
-          <Sparkles className="text-white w-8 h-8 animate-pulse" />
+      {/* Brand Header */}
+      <motion.div variants={itemVariants} className="flex flex-col items-center mb-8">
+        <div className="relative mb-5 select-none">
+          {/* Pulsing glow halo */}
+          <div className="absolute inset-0 rounded-full bg-accent-custom/25 blur-md animate-pulse scale-110" />
+          <div className="relative w-11 h-11 rounded-full bg-accent-custom flex items-center justify-center text-white shadow-lg border border-accent-custom/10 transition-transform duration-300 hover:scale-105">
+            <Sparkles size={18} />
+          </div>
         </div>
-        <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-accent-indigo via-accent-purple to-accent-blue bg-clip-text text-transparent pb-1">
-          Aethera Research Engine
+        
+        <h1 className="text-2xl font-extrabold tracking-tight text-txt-primary select-none">
+          How can I help you today?
         </h1>
-        <p className="text-sm text-txt-secondary mt-3.5 max-w-md mx-auto leading-relaxed">
-          State-of-the-art search synthesis, rich coding environments, and mathematical modeling.
-        </p>
       </motion.div>
 
       {/* Suggested Prompts Grid */}
       <motion.div
         variants={itemVariants}
-        className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-6"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full mt-4"
       >
-        {SUGGESTIONS.map((s, idx) => {
-          const Icon = s.icon;
+        {SUGGESTIONS.map((item, idx) => {
+          const Icon = item.icon;
           return (
             <motion.div
               key={idx}
               variants={itemVariants}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              onClick={() => onSelectPrompt(s.prompt)}
-              className="p-5 bg-bg-card/45 border border-border-custom/75 rounded-2xl cursor-pointer hover:border-accent-indigo/40 hover:bg-bg-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[130px] group relative overflow-hidden backdrop-blur-xs"
+              onClick={() => onSelectPrompt(item.prompt)}
+              className="p-4 text-left border border-border-custom/30 bg-bg-card/25 hover:bg-bg-card hover:border-accent-custom/25 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-0.5 flex items-start space-x-3.5 group shadow-2xs hover:shadow-xs"
             >
-              <div className="flex items-start justify-between">
-                <div className={`p-2.5 rounded-xl ${s.color}`}>
-                  <Icon size={18} />
-                </div>
-                <ChevronRight
-                  size={16}
-                  className="text-txt-secondary group-hover:text-accent-indigo group-hover:translate-x-1 transition duration-200"
-                />
+              <div className="p-2 bg-bg-app border border-border-custom/40 rounded-xl text-txt-secondary group-hover:text-accent-custom group-hover:bg-accent-light transition duration-200 shrink-0">
+                <Icon size={15} />
               </div>
-              <div>
-                <h3 className="text-xs font-bold text-txt-primary group-hover:text-accent-indigo transition">
-                  {s.title}
-                </h3>
-                <p className="text-[10.5px] text-txt-secondary mt-1 line-clamp-2 leading-normal">
-                  {s.desc}
+              <div className="truncate flex-1">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-bold text-txt-primary group-hover:text-accent-custom transition duration-150">
+                    {item.title}
+                  </h4>
+                  <ArrowUpRight
+                    size={13}
+                    className="text-txt-secondary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition duration-200"
+                  />
+                </div>
+                <p className="text-[10.5px] text-txt-secondary mt-1 truncate">
+                  {item.desc}
                 </p>
               </div>
             </motion.div>
